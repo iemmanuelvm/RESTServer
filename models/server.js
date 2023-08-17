@@ -11,6 +11,9 @@ class Server {
         this.port = process.env.PORT;
         this.usuariosRoutePath = '/api/usuarios';
 
+        //JWT
+        this.authPath = '/api/auth'
+
         //Conectar a base de datos
         this.conectarDB();
         
@@ -37,6 +40,7 @@ class Server {
     }
 
     routes() {
+        this.app.use(this.authPath, require('../routes/auth'));
         this.app.use(this.usuariosRoutePath, require('../routes/users'));
     }
 

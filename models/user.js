@@ -46,7 +46,8 @@ const UsuarioSchema = Schema({
 
 //SObreescribir metodos, funcion que permite no regresar cosas inecesarias
 UsuarioSchema.methods.toJSON = function() {
-    const {__v, password, ...usuario} = this.toObject();
+    const {__v, password, _id, ...usuario} = this.toObject();
+    usuario.uid = _id;
     return usuario;
 }
 
